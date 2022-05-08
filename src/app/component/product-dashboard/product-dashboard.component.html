@@ -1,0 +1,47 @@
+
+ <mat-card  class = "example">
+    <h3>Product List</h3>
+    <div class="search-name">
+       <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" SEARCH BY NAME ">
+     </div>
+     
+    <table class="table">
+        <thead>
+            <tr>
+               <th scope="col">Product Id</th>
+               <th scope="col">Product Name</th>
+               <th scope="col">Product Url</th>
+               <th scope="col">Product Quantity</th>
+               <th scope="col">Product Price</th>
+               <th scope="col">Action</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+           
+            <tr  *ngFor="let item of productData | searchFilter:searchText | paginate: { itemsPerPage: 10, currentPage: p }"
+        >     
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.name }} </td>
+                <td>{{item.imageUrl}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+                
+   
+                
+                <td>
+                   
+                   <button class="btn btn-danger mx-3" (click)="deleteProduct(item.id)">Delete</button>
+                   
+                    &nbsp;
+                    <a routerLink="/edit/{{item.id}}"><i class="btn btn-info"> Edit </i></a> </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+ </mat-card>
+ 
+ 
+  
+ 

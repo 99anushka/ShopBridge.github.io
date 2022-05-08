@@ -1,0 +1,40 @@
+<mat-card class="example">
+    <h3>Add Product</h3>
+<div *ngIf="message" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> Product Added
+    <button (click)="removeMessage()" type="button" data-bs-dismiss="alert" aria-label="Close">X</button>
+</div>
+<form [formGroup]="addProduct" (ngSubmit)="SaveData()">
+    <div class="mb-3">
+        <label class="form-label">Id</label>
+        <input type="number" class="form-control" placeholder="Enter Product Id" formControlName="id">
+        <mat-error *ngIf="addProduct.controls.id.touched && addProduct.controls.id.errors">Id is required</mat-error>
+        
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="email" class="form-control" placeholder="Enter Product Name" formControlName="name">
+        <mat-error *ngIf=" addProduct.controls.name.touched && addProduct.controls.name.errors">Name is required</mat-error>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Image Url</label>
+        <input type="url" class="form-control" placeholder="Enter imageUrl" formControlName="imageUrl">
+        <mat-error *ngIf=" addProduct.controls.imageUrl.touched && addProduct.controls.imageUrl.errors">Url is required</mat-error>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Quantity</label>
+        <input type="number" class="form-control" placeholder="Enter Quantity" formControlName="quantity">
+        <mat-error *ngIf=" addProduct.controls.quantity.touched && addProduct.controls.quantity.errors">Quantity is required</mat-error>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" class="form-control" placeholder="Enter Price" formControlName="price">
+        <mat-error *ngIf=" addProduct.controls.price.touched && addProduct.controls.price.errors">Price is required</mat-error>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!addProduct.valid">Submit</button>
+    <button type="reset" class="btn btn-primary mx-3">Reset</button>
+    
+</form>
+
+</mat-card>
